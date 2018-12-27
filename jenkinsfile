@@ -6,7 +6,7 @@ pipeline {
          string(name: 'dbnode1', defaultValue: '54.165.108.185', description: 'Node1 Server')
          string(name: 'dbnode2', defaultValue: '18.212.10.141', description: 'Node2 Server')
          string(name: 'dbnode3', defaultValue: '3.86.35.36', description: 'Node3 Server')
-         string(name: 'pem_path', defaultValue: 'C:/Users/ADMIN2/.ssh/swarm.pem', description: 'full path to pem file')
+         string(name: 'pem_path', defaultValue: "C:/Users/ADMIN2/.ssh/swarm.pem", description: 'full path to pem file')
          
     }
 
