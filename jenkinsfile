@@ -15,19 +15,22 @@ stages{
             parallel{
                 stage ('Deploy to node1'){
                     steps {
-                        bat "ssh -i ${pem_path} ${user}@${dbnode1}"
+                        bat "ssh -i ${pem_path} ${user}@${dbnode1} git clone https://github.com/derence2002/postgres.git"
+                        bat "ssh -i ${pem_path} ${user}@${dbnode1} psql -h localhost -U postgres -f createdb.sql"
                     }
                 }
 
                 stage ("Deploy to node2"){
                     steps {
-                        bat "ssh -i ${pem_path} ${user}@${dbnode2}"
+                        bat "ssh -i ${pem_path} ${user}@${dbnode2} git clone https://github.com/derence2002/postgres.git"
+                        bat "ssh -i ${pem_path} ${user}@${dbnode2} psql -h localhost -U postgres -f createdb.sql"
                     }
                 }
 
                 stage ("Deploy to node3"){
                     steps {
-                        bat "ssh -i ${pem_path} ${user}@${dbnode3}"
+                        bat "ssh -i ${pem_path} ${user}@${dbnode3} git clone https://github.com/derence2002/postgres.git"
+                        bat "ssh -i ${pem_path} ${user}@${dbnode3} psql -h localhost -U postgres -f createdb.sql"
                     }
                 }
             }
