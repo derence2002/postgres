@@ -6,7 +6,7 @@ pipeline {
          string(name: 'dbnode1', defaultValue: '54.165.108.185', description: 'Node1 Server')
          string(name: 'dbnode2', defaultValue: '18.212.10.141', description: 'Node2 Server')
          string(name: 'dbnode3', defaultValue: '3.86.35.36', description: 'Node3 Server')
-         string(name: 'ppk_path', defaultValue: 'C:/Users/ADMIN2/.ssh/swarm.ppk', description: 'full path to pem file')
+         string(name: 'ppk_path', defaultValue: "C:/Users/ADMIN2/.ssh/swarm.ppk", description: 'full path to pem file')
          
     }
 
@@ -16,21 +16,21 @@ stages{
                 stage ('Deploy to node1'){
                     steps {
                         bat "echo y | plink -i ${ppk_path} ${user}@${dbnode1} git clone https://github.com/derence2002/postgres.git"
-                        bat "plink -i ${ppk_path} ${user}@${dbnode1} psql -h localhost -U postgres -f createdb.sql"
+                        bat "plink -i ${ppk_path} ${user}@${dbnode1} psql -h localhost -U postgres -f postgres/createdb.sql"
                     }
                 }
 
                 stage ("Deploy to node2"){
                     steps {
                         bat "echo y | plink -i ${ppk_path} ${user}@${dbnode2} git clone https://github.com/derence2002/postgres.git"
-                        bat "plink -i ${ppk_path} ${user}@${dbnode2} psql -h localhost -U postgres -f createdb.sql"
+                        bat "plink -i ${ppk_path} ${user}@${dbnode2} psql -h localhost -U postgres -f postgres/createdb.sql"
                     }
                 }
 
                 stage ("Deploy to node3"){
                     steps {
                         bat "echo y | plink -i ${ppk_path} ${user}@${dbnode3} git clone https://github.com/derence2002/postgres.git"
-                        bat "plink -i ${ppk_path} ${user}@${dbnode3} psql -h localhost -U postgres -f createdb.sql"
+                        bat "plink -i ${ppk_path} ${user}@${dbnode3} psql -h localhost -U postgres -f postgres/createdb.sql"
                     }
                 }
             }
