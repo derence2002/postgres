@@ -15,22 +15,25 @@ stages{
             parallel{
                 stage ('Deploy to node1'){
                     steps {
-                        bat "echo y | plink -i ${ppk_path} ${user}@${dbnode1} git clone https://github.com/derence2002/postgres.git"
-                        bat "plink -i ${ppk_path} ${user}@${dbnode1} psql -h localhost -U postgres -f postgres/createdb.sql"
+                        bat "echo y | plink -i ${ppk_path} ${user}@${dbnode1} rm -rf postgres"
+                        bat "plink -i ${ppk_path} ${user}@${dbnode1} git clone https://github.com/derence2002/postgres.git"
+                        bat "plink -i ${ppk_path} ${user}@${dbnode1} psql -h localhost -U postgres -f postgres/dropdb.sql"
                     }
                 }
 
                 stage ("Deploy to node2"){
                     steps {
-                        bat "echo y | plink -i ${ppk_path} ${user}@${dbnode2} git clone https://github.com/derence2002/postgres.git"
-                        bat "plink -i ${ppk_path} ${user}@${dbnode2} psql -h localhost -U postgres -f postgres/createdb.sql"
+                        bat "echo y | plink -i ${ppk_path} ${user}@${dbnode2} rm -rf postgres"
+                        bat "plink -i ${ppk_path} ${user}@${dbnode2} git clone https://github.com/derence2002/postgres.git"
+                        bat "plink -i ${ppk_path} ${user}@${dbnode2} psql -h localhost -U postgres -f postgres/dropdb.sql"
                     }
                 }
 
                 stage ("Deploy to node3"){
                     steps {
-                        bat "echo y | plink -i ${ppk_path} ${user}@${dbnode3} git clone https://github.com/derence2002/postgres.git"
-                        bat "plink -i ${ppk_path} ${user}@${dbnode3} psql -h localhost -U postgres -f postgres/createdb.sql"
+                        bat "echo y | plink -i ${ppk_path} ${user}@${dbnode3} rm -rf postgres"
+                        bat "plink -i ${ppk_path} ${user}@${dbnode3} git clone https://github.com/derence2002/postgres.git"
+                        bat "plink -i ${ppk_path} ${user}@${dbnode3} psql -h localhost -U postgres -f postgres/dropdb.sql"
                     }
                 }
             }
